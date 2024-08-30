@@ -55,7 +55,12 @@ app.post('/api/shorturl', function (req, res) {
 
 app.get('/api/shorturl/:shortUrl', function (req, res) {
   const shortUrl = parseInt(req.params.shortUrl);
-  const urlEntry = urlDatabase.find(entry => entry.shortUrl === shortUrl);
+
+  if (isNaN(shortUrl)) {
+    return res.json({ 'error': 'invalid url' })
+  }
+
+  const urlEntry = urlDatabase.find(entry => entry.shortUrl == shortUrl);
 
   if (urlEntry) {
     res.redirect(urlEntry.originalUrl);
