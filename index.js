@@ -4,7 +4,6 @@ const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 const dns = require('dns');
-const urlParser = require('url');
 
 // Basic Configuration
 const port = process.env.PORT || 3000;
@@ -45,7 +44,7 @@ app.post('/api/shorturl', function (req, res) {
     } else {
       const shortUrl = urlDatabase.length + 1;
       urlDatabase.push({
-        'original_url': url.href,
+        originalUrl: url.href,
         shortUrl
       });
       res.json({ 'original_url': url.href, 'short_url': shortUrl });
