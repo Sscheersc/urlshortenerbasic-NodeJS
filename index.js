@@ -54,7 +54,7 @@ app.post('/api/shorturl', function (req, res) {
 })
 
 app.get('/api/shorturl/:shortUrl', function (req, res) {
-  const shortUrl = parseInt(req.params.shortUrl);
+  const shortUrl = parseInt(req.params.shortUrl, 10);
 
   if (isNaN(shortUrl)) {
     return res.json({ 'error': 'invalid url' })
